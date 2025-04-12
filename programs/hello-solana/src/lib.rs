@@ -15,17 +15,18 @@ pub mod hello_solana {
         Ok(())
     }
 }
-
+//accounts are bydefault immutable
 #[derive(Accounts)]
 pub struct Initialize<'info> {
-    #[account(mut)]
+    #[account(mut)] // making this mutable for paying rent etc 
     pub signer: Signer<'info>,
     #[account(
-        init,
-        payer= signer,
+        init, //initialize a data account
+        payer = signer, 
         space=200,
     )]
     pub data_account: Account<'info, Whatever>,
+    // empty accounts are owned by system program
     pub system_program: Program<'info, System>,
 }
 

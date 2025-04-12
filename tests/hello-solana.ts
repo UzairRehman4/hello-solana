@@ -26,5 +26,12 @@ describe("hello-solana", () => {
       }).signers([signer, data_account])
       .rpc();
     console.log("Your transaction signature", tx);
+
+    const dataAccount = await program.account.whatever.fetch(data_account.publicKey);
+
+    console.log("Data Account", dataAccount);
+
+
+
   });
 });
